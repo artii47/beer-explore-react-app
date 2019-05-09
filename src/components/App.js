@@ -1,11 +1,14 @@
-import React from 'react'
+import React from 'react';
+import Beers from './Beers';
 
 const App = () => {
   return (
     <div>
-      hello world
+      <Beers />
     </div>
   )
 }
 
 export default App
+
+

@@ -1,5 +1,6 @@
 import {combineReducers} from 'redux';
+import beersReducer from './beersReducer';
 
 export default combineReducers({
-  replaceMe: () => {return 'replace me'}
+  beers: beersReducer
 })
