@@ -5,3 +5,15 @@ export const fetchBeers = () => async (dispatch) => {
 
   dispatch({type: 'FETCH_BEERS', payload: response.data});
 }
+
+export const fetchBeer = (beerId) => async (dispatch) => {
+  
+  const response = await beers.get(`/beers/${beerId}`)
+
+  dispatch({type: 'FETCH_BEER', payload: response.data})
+}
+
+export const reset = () => async (dispatch) => {
+  dispatch({type: 'RESET'})
+}
+
