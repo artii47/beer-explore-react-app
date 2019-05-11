@@ -1,9 +1,15 @@
 import React, { Component } from "react";
 import "../scss/Searchbar.scss";
 import { connect } from "react-redux";
+import { search } from "../actions";
 
 class Searchbar extends Component {
-  state = { searchTerm: "fake" };
+
+
+  onChangeHandler = e => {
+    e.preventDefault();
+    this.props.search(e.target.value);
+  };
 
   render() {
     return (
@@ -15,7 +21,10 @@ class Searchbar extends Component {
 }
 
 const mapStateToProps = state => {
-  return { beers: state.beers };
+  return { beers: Object.values(state.beers), searchTerm: state.searchTerm };
 };
 
-export default connect(mapStateToProps)(Searchbar);
+export default connect(
+  mapStateToProps,
+  { search }
+)(Searchbar);

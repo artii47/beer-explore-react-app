@@ -8,17 +8,20 @@ import history from "../history";
 import SearchBar from "./Searchbar";
 
 class App extends Component {
+  handleScroll = () => {
+    console.log('fds')
+  }
   render() {
     return (
-      <React.Fragment>
+      <div>
         <SearchBar />
-        <div className="container">
+        <div onScroll={this.handleScroll} className="container">
           <Router history={history}>
             <Route path="/" component={Beers} />
             <Route path="/beer/:id" component={BeerDetails} />
           </Router>
         </div>
-      </React.Fragment>
+        </div>
     );
   }
 }
