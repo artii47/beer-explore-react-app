@@ -6,6 +6,12 @@ export const fetchBeers = () => async dispatch => {
   dispatch({ type: "FETCH_BEERS", payload: response.data });
 };
 
+export const fetchSearchBeers = (searchTerm) => async (dispatch) => {
+  const response = await beers.get(`/beers?beer_name=${searchTerm}`)
+
+  dispatch({type: 'FETCH_BEERS', payload: response.data})
+}
+
 export const fetchBeer = beerId => async dispatch => {
   const response = await beers.get(`/beers/${beerId}`);
 

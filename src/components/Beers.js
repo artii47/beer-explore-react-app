@@ -9,6 +9,11 @@ class Beers extends Component {
   componentDidMount = () => {
     this.props.fetchBeers();
   };
+  componentDidUpdate = (prevProps) => {
+    if(this.props.searchTerm.length === 0 && prevProps.searchTerm.length !== 0){
+      this.props.fetchBeers();
+    }
+  }
 
   render() {
     if (this.props.beers.length === 0) {
