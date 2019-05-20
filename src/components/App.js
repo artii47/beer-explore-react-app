@@ -8,14 +8,11 @@ import history from "../history";
 import SearchBar from "./Searchbar";
 
 class App extends Component {
-  handleScroll = () => {
-    console.log('fds')
-  }
   render() {
     return (
       <div>
         <SearchBar />
-        <div onScroll={this.handleScroll} className="container">
+        <div className="container">
           <Router history={history}>
             <Route path="/" component={Beers} />
             <Route path="/beer/:id" component={BeerDetails} />

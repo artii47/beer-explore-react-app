@@ -6,10 +6,13 @@ export const fetchBeers = () => async dispatch => {
   dispatch({ type: "FETCH_BEERS", payload: response.data });
 };
 
-export const fetchSearchBeers = (searchTerm) => async (dispatch) => {
-  const response = await beers.get(`/beers?beer_name=${searchTerm}`)
-
-  dispatch({type: 'FETCH_BEERS', payload: response.data})
+export const fetchSearchBeers = (searchTerm) => async (dispatch, getState) => {
+  const response = await beers.get(`/beers?beer_name=${searchTerm}`);
+  const searchTermFromState = getState().searchTerm;
+  const filteredBeers = response.data.filter(beer => {
+    return beer.name.toLowerCase().includes(searchTermFromState);
+  });
+  dispatch({type: 'FETCH_BEERS', payload: filteredBeers})
 }
 
 export const fetchBeer = beerId => async dispatch => {
@@ -17,6 +20,9 @@ export const fetchBeer = beerId => async dispatch => {
 
   dispatch({ type: "FETCH_BEER", payload: response.data });
 };
+
+//fetch another page
+//https://api.punkapi.com/v2/beers?page=2&per_page=25
 
 export const reset = () => async dispatch => {
   dispatch({ type: "RESET" });

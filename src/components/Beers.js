@@ -15,28 +15,37 @@ class Beers extends Component {
     }
   }
 
+  handleScroll = e => {
+    let element = e.target
+    
+    if (element.scrollHeight - element.scrollTop === element.clientHeight) {
+      console.log('call an action creator')
+    }
+  }
+
+  renderBeers = () => {
+    return this.props.beers.map((beer) => {
+      return (
+        <Card
+            key={beer.id}
+            desc={beer.description}
+            imgUrl={beer.image_url}
+            beerName={beer.name}
+            beerId={beer.id}
+          />
+      )
+    })
+  }
+
   render() {
     if (this.props.beers.length === 0) {
       return <div className="lds-dual-ring" />;
     }
-    const filteredBeers = this.props.beers.filter(beer => {
-      return beer.name.toLowerCase().includes(this.props.searchTerm);
-    });
 
     return (
-      <React.Fragment>
-        {filteredBeers.map(beer => {
-          return (
-            <Card
-              key={beer.id}
-              desc={beer.description}
-              imgUrl={beer.image_url}
-              beerName={beer.name}
-              beerId={beer.id}
-            />
-          );
-        })}
-      </React.Fragment>
+      <div onScroll={this.handleScroll} className='beers'>
+        {this.renderBeers()}
+      </div>
     );
   }
 }
