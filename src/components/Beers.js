@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchBeers } from "../actions";
+import { fetchBeers, fetchPage } from "../actions";
 import Card from "./Card";
 import "../scss/spinner.scss";
 import '../scss/Beers.scss';
 
 class Beers extends Component {
+  state = {
+    page: 1
+  }
   componentDidMount = () => {
     this.props.fetchBeers();
   };
@@ -16,10 +19,11 @@ class Beers extends Component {
   }
 
   handleScroll = e => {
-    let element = e.target
-    
-    if (element.scrollHeight - element.scrollTop === element.clientHeight) {
-      console.log('call an action creator')
+    let element = e.target;
+    const scrollEnd = element.scrollHeight - element.scrollTop === element.clientHeight
+    if (scrollEnd && this.props.searchTerm.length === 0) {
+      this.setState({page: this.state.page + 1})
+      this.props.fetchPage(this.state.page);
     }
   }
 
@@ -44,7 +48,9 @@ class Beers extends Component {
 
     return (
       <div onScroll={this.handleScroll} className='beers'>
-        {this.renderBeers()}
+        {
+          this.renderBeers()
+        }
       </div>
     );
   }
@@ -56,5 +62,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { fetchBeers }
+  { fetchBeers, fetchPage }
 )(Beers);

@@ -6,9 +6,6 @@ import { search, fetchSearchBeers } from "../actions";
 //https://api.punkapi.com/v2/beers?beer_name=Buzz
 
 class Searchbar extends Component {
-
-  state = {searchTerm: ''}
-
   onChangeHandler = e => {
     this.props.search(e.target.value);
   };

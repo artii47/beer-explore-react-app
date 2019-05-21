@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "../scss/Modal.scss";
-import { Link } from "react-router-dom";
 import history from "../history";
 import "../scss/spinner.scss";
 
@@ -16,7 +15,7 @@ class Modal extends Component {
           <div className="modal__tagline">
             <i>{this.props.tagline} </i>
           </div>
-          <img className="modal__img" src={this.props.img} />
+          <img className="modal__img" src={this.props.img} alt={this.props.name} />
           <div className="modal__name">{this.props.name}</div>
           <div className="modal__desc">{this.props.description}</div>
         </div>
