@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "../scss/Searchbar.scss";
 import { connect } from "react-redux";
 import { search, fetchSearchBeers } from "../actions";
+import _ from 'lodash';
 
 //https://api.punkapi.com/v2/beers?beer_name=Buzz
 
@@ -9,6 +10,14 @@ class Searchbar extends Component {
   onChangeHandler = e => {
     this.props.search(e.target.value);
   };
+
+  debounceEvent(...args) {
+    this.debouncedEvent = _.debounce(...args);
+    return e => {
+      e.persist();
+      return this.debouncedEvent(e);
+    }
+  }
 
   componentDidUpdate = () => {
     if(this.props.searchTerm.length !== 0){
@@ -19,7 +28,7 @@ class Searchbar extends Component {
   render() {
     return (
       <div className="searchbar">
-        <input value={this.props.searchTerm} onChange={this.onChangeHandler} className="searchbar__input" />
+        <input onChange={this.debounceEvent(this.onChangeHandler, 400)} className="searchbar__input" />
       </div>
     );
   }

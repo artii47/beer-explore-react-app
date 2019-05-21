@@ -20,7 +20,7 @@ class Beers extends Component {
 
   handleScroll = e => {
     let element = e.target;
-    const scrollEnd = element.scrollHeight - element.scrollTop === element.clientHeight
+    const scrollEnd = element.scrollHeight - element.scrollTop === element.clientHeight;
     if (scrollEnd && this.props.searchTerm.length === 0) {
       this.setState({page: this.state.page + 1})
       this.props.fetchPage(this.state.page);
