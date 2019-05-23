@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { fetchBeers, fetchPage } from "../actions";
 import Card from "./Card";
 import Spinner from "./spinner";
+import PropTypes from "prop-types";
 import "../scss/Beers.scss";
 
 class Beers extends Component {
@@ -67,3 +68,8 @@ export default connect(
   mapStateToProps,
   { fetchBeers, fetchPage }
 )(Beers);
+
+Beers.propTypes = {
+  beers: PropTypes.array,
+  searchTerm: PropTypes.string
+};

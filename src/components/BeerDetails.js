@@ -3,6 +3,7 @@ import Modal from "./Modal";
 import { connect } from "react-redux";
 import { fetchBeer, reset } from "../actions";
 import Spinner from "./spinner";
+import PropTypes from "prop-types";
 
 class BeerDetails extends Component {
   componentDidMount = () => {
@@ -36,3 +37,7 @@ export default connect(
   mapStateToProps,
   { fetchBeer, reset }
 )(BeerDetails);
+
+BeerDetails.propTypes = {
+  beer: PropTypes.object
+};

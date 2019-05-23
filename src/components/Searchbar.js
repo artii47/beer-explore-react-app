@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "../scss/Searchbar.scss";
 import { connect } from "react-redux";
 import { search, fetchSearchBeers } from "../actions";
+import PropTypes from "prop-types";
 import _ from "lodash";
 
 //https://api.punkapi.com/v2/beers?beer_name=Buzz
@@ -45,3 +46,7 @@ export default connect(
   mapStateToProps,
   { search, fetchSearchBeers }
 )(Searchbar);
+
+Searchbar.propTypes = {
+  searchTerm: PropTypes.string
+};
