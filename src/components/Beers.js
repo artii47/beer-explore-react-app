@@ -13,6 +13,7 @@ class Beers extends Component {
     this.props.fetchBeers();
   };
   componentDidUpdate = prevProps => {
+    console.log("beers updated");
     if (
       this.props.searchTerm.length === 0 &&
       prevProps.searchTerm.length !== 0

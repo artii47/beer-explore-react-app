@@ -8,11 +8,16 @@
   height: 100%;
   transition: all 0.3s ease-out;
   line-height: 2.5;
+  overflow-y: scroll;
 
   &__name {
     text-align: center;
     grid-column: 5/12;
     font-size: 3rem;
+
+    @media only screen and (max-width: 750px) {
+      grid-column: 1/-1;
+    }
   }
 
   &__icon {
@@ -22,17 +27,35 @@
 
   &__content {
     display: grid;
-    grid-template-rows: repeat(8, 1fr);
     grid-template-columns: repeat(12, 1fr);
     color: #000;
     position: absolute;
+    padding: 3vw 0;
+    overflow-y: scroll;
     top: 50%;
     left: 50%;
-    height: 70vh;
     width: 70%;
     transform: translate(-50%, -50%);
     background-color: rgb(255, 247, 247);
     box-shadow: 0 3rem 5rem rgba(black, 0.3);
+
+    @media only screen and (max-width: 1500px) {
+      line-height: 2.2;
+    }
+    @media only screen and (max-width: 1150px) {
+      line-height: 1.9;
+    }
+    @media only screen and (max-width: 1000px) {
+      line-height: 1.5;
+    }
+    @media only screen and (max-width: 750px) {
+      line-height: 1.2;
+      padding: 2vw 7vw;
+      text-align: center;
+    }
+    @media only screen and (max-width: 450px) {
+      width: 90%;
+    }
   }
 
   &__tagline {
@@ -42,11 +65,17 @@
     line-height: 1.7;
     justify-self: center;
     align-self: flex-start;
+    @media only screen and (max-width: 750px) {
+      display: none;
+    }
   }
 
   &__desc {
     grid-column: 5/12;
     grid-row: 2 / span 3;
+    @media only screen and (max-width: 750px) {
+      grid-column: 1/-1;
+    }
   }
 
   &__img {
@@ -55,6 +84,10 @@
     grid-column: 2/4;
     grid-row: 2/3;
     justify-self: center;
+    @media only screen and (max-width: 750px) {
+      color: orange;
+      display: none;
+    }
   }
 
   &__back {

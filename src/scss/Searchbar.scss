@@ -2,19 +2,26 @@
   display: flex;
   justify-content: center;
   margin: 4rem 0;
+  @media only screen and (max-width: 500px) {
+    margin: 1rem 0;
+  }
   &__input {
     padding: 1rem 4rem;
     font-size: 3rem;
     border: 0;
     border-radius: 100px;
     outline: none;
-    width: 20%;
+    width: 40rem;
     transition: all 0.3s;
     box-shadow: 0 1rem 2rem rgba(#000, 0.1);
+    @media only screen and (max-width: 500px) {
+      width: 30rem;
+    }
     &:focus {
       width: 25%;
-    }
-    &:hover {
+      @media only screen and (max-width: 500px) {
+        width: 30rem;
+      }
     }
   }
 }
