@@ -8,14 +8,15 @@ class Modal extends Component {
     return (
       <div onClick={() => history.push("/")} className="modal">
         <div onClick={e => e.stopPropagation()} className="modal__content">
-          {/* <svg className='modal__icon'>
-            <use xlinkHref="../svg/#icon-star.svg" />
-          </svg> */}
           {this.props.name ? "" : <div className="lds-dual-ring" />}
+          <img
+            className="modal__img"
+            src={this.props.img}
+            alt={this.props.name}
+          />
           <div className="modal__tagline">
-            <i>{this.props.tagline} </i>
+            <i>{this.props.tagline}</i>
           </div>
-          <img className="modal__img" src={this.props.img} alt={this.props.name} />
           <div className="modal__name">{this.props.name}</div>
           <div className="modal__desc">{this.props.description}</div>
         </div>

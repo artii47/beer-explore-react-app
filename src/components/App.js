@@ -18,7 +18,7 @@ class App extends Component {
             <Route path="/beer/:id" component={BeerDetails} />
           </Router>
         </div>
-        </div>
+      </div>
     );
   }
 }

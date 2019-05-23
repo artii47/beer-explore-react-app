@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Modal from "./Modal";
 import { connect } from "react-redux";
 import { fetchBeer, reset } from "../actions";
-import "../scss/spinner.scss";
+import Spinner from "./spinner";
 
 class BeerDetails extends Component {
   componentDidMount = () => {
@@ -13,7 +13,7 @@ class BeerDetails extends Component {
   };
   render() {
     if (!this.props.beer) {
-      return <div className="lds-dual-ring" />;
+      return <Spinner />;
     }
     return (
       <div>
