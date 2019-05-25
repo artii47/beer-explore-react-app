@@ -10,6 +10,7 @@ class Beers extends Component {
   state = {
     page: 2
   };
+
   componentDidMount = () => {
     this.props.fetchBeers();
   };

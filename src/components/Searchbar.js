@@ -21,6 +21,7 @@ class Searchbar extends Component {
   };
 
   componentDidUpdate = () => {
+    console.log("updated");
     if (this.props.searchTerm.length !== 0) {
       this.props.fetchSearchBeers(this.props.searchTerm);
     }
@@ -30,8 +31,9 @@ class Searchbar extends Component {
     return (
       <div className="searchbar">
         <input
-          onChange={this.debounceEvent(this.onChangeHandler, 400)}
           className="searchbar__input"
+          onChange={this.debounceEvent(this.onChangeHandler, 400)}
+          placeholder="Type in beer name"
         />
       </div>
     );

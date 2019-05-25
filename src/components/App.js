@@ -5,13 +5,13 @@ import "../scss/App.scss";
 import { Router, Route } from "react-router-dom";
 import BeerDetails from "./BeerDetails";
 import history from "../history";
-import SearchBar from "./Searchbar";
+import Header from "./Header";
 
 class App extends Component {
   render() {
     return (
-      <div>
-        <SearchBar />
+      <div className="app">
+        <Header />
         <div className="container">
           <Router history={history}>
             <Route path="/" component={Beers} />
