@@ -18,6 +18,21 @@
   border-color: yellowgreen transparent yellowgreen transparent;
   animation: lds-dual-ring 1.1s linear infinite;
 }
+
+.lds-dual-ring {
+  display: inline-block;
+  position: absolute;
+  bottom: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  &__bottom {
+    bottom: 0%;
+    transform: translate(-50%, 0);
+  }
+}
+
 @keyframes lds-dual-ring {
   0% {
     transform: rotate(0deg);

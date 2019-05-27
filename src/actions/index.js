@@ -39,6 +39,6 @@ export const reset = () => {
 export const search = value => {
   return {
     type: SEARCH,
-    payload: value
+    payload: value.toLowerCase()
   };
 };

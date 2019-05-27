@@ -1,8 +1,8 @@
 import React from "react";
 import "../scss/spinner.scss";
 
-const spinner = () => {
-  return <div className="lds-dual-ring" />;
+const spinner = props => {
+  return <div className={`lds-dual-ring lds-dual-ring__${props.bottom}`} />;
 };
 
 export default spinner;

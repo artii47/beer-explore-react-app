@@ -29,7 +29,9 @@ class Beers extends Component {
     const scrollEnd =
       element.scrollHeight - element.scrollTop === element.clientHeight;
     if (scrollEnd && this.props.searchTerm.length === 0) {
-      this.setState({ page: this.state.page + 1 });
+      this.setState(currState => ({
+        page: currState.page + 1
+      }));
       this.props.fetchPage(this.state.page);
     }
   };
