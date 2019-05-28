@@ -24,10 +24,12 @@ export const fetchBeer = beerId => async dispatch => {
 //fetch another page
 //https://api.punkapi.com/v2/beers?page=2&per_page=25
 
-export const fetchPage = page => async dispatch => {
+export const fetchPage = (page, changeLoading) => async dispatch => {
+  changeLoading();
   const response = await beers.get(`/beers?page=${page}`);
 
   dispatch({ type: FETCH_PAGE, payload: response.data });
+  changeLoading();
 };
 
 export const reset = () => {
@@ -40,5 +42,11 @@ export const search = value => {
   return {
     type: SEARCH,
     payload: value.toLowerCase()
+  };
+};
+
+export const loading = () => {
+  return {
+    type: "LOADING"
   };
 };

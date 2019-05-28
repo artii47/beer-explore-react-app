@@ -8,7 +8,8 @@ import "../scss/Beers.scss";
 
 class Beers extends Component {
   state = {
-    page: 2
+    page: 2,
+    isLoading: false
   };
 
   componentDidMount = () => {
@@ -24,6 +25,10 @@ class Beers extends Component {
     }
   };
 
+  changeLoading = () => {
+    this.setState({ isLoading: !this.state.isLoading });
+  };
+
   handleScroll = e => {
     let element = e.target;
     const scrollEnd =
@@ -32,7 +37,7 @@ class Beers extends Component {
       this.setState(currState => ({
         page: currState.page + 1
       }));
-      this.props.fetchPage(this.state.page);
+      this.props.fetchPage(this.state.page, this.changeLoading);
     }
   };
 
@@ -58,6 +63,7 @@ class Beers extends Component {
     return (
       <div onScroll={this.handleScroll} className="beers">
         {this.renderBeers()}
+        {this.state.isLoading ? <Spinner bottom={"bottom"} /> : ""}
       </div>
     );
   }
