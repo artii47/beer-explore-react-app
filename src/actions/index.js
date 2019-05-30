@@ -44,9 +44,3 @@ export const search = value => {
     payload: value.toLowerCase()
   };
 };
-
-export const loading = () => {
-  return {
-    type: "LOADING"
-  };
-};

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchBeers, fetchPage } from "../actions";
+import { fetchBeers, fetchPage, fetchSearchBeers } from "../actions";
 import Card from "./Card";
 import Spinner from "./spinner";
 import PropTypes from "prop-types";
@@ -15,18 +15,16 @@ class Beers extends Component {
   componentDidMount = () => {
     this.props.fetchBeers();
   };
+  changeLoading = () => {
+    this.setState({ isLoading: !this.state.isLoading });
+  };
   componentDidUpdate = prevProps => {
-    console.log("beers updated");
     if (
       this.props.searchTerm.length === 0 &&
       prevProps.searchTerm.length !== 0
     ) {
       this.props.fetchBeers();
     }
-  };
-
-  changeLoading = () => {
-    this.setState({ isLoading: !this.state.isLoading });
   };
 
   handleScroll = e => {
@@ -75,7 +73,7 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { fetchBeers, fetchPage }
+  { fetchBeers, fetchPage, fetchSearchBeers }
 )(Beers);
 
 Beers.propTypes = {

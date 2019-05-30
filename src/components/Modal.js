@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 class Modal extends Component {
   renderModalContent = () => {
-    if (!this.props.name) {
+    if (!this.props.name && !this.props.image_url) {
       return <Spinner />;
     }
     return (
@@ -37,17 +37,20 @@ class Modal extends Component {
             .map(beer => {
               return (
                 <Link
-                  to={`/beer/${beer.id}`}
                   className="modal__youmayalsolike__item"
+                  to={`/beer/${beer.id}`}
+                  key={beer.id}
                 >
-                  <div className="modal__youmayalsolike__beername">
-                    {beer.name}
-                  </div>
-                  <img
-                    className="modal__youmayalsolike__img"
-                    src={beer.image_url}
-                    alt={beer.name}
-                  />
+                  <React.Fragment>
+                    <div className="modal__youmayalsolike__beername">
+                      {beer.name}
+                    </div>
+                    <img
+                      className="modal__youmayalsolike__img"
+                      src={beer.image_url}
+                      alt={beer.name}
+                    />
+                  </React.Fragment>
                 </Link>
               );
             })}

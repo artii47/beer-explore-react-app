@@ -70,36 +70,37 @@
     grid-row: 3/4;
     grid-column: 5/13;
     display: grid;
-    grid-template-rows: repeat(3, min-content);
+    grid-template-rows: min-content 10rem 10rem;
     grid-template-columns: repeat(3, 20rem);
     justify-self: center;
     text-align: center;
     padding-bottom: 2rem;
     border-bottom: 2px solid #ccc;
 
-    &__item {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
-      text-decoration: none;
-      color: rgb(78, 75, 75);
-    }
-
     &__text {
       grid-column: 1/-1;
-      grid-row: 1/1;
+      grid-row: 1/2;
+    }
+
+    &__item {
+      text-decoration: none;
+      color: rgba(36, 34, 34, 0.938);
     }
 
     &__beername {
       grid-row: 2/3;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     &__img {
+      display: block;
       grid-row: 3/4;
       width: 30px;
       height: 100px;
-      justify-self: center;
+      margin: auto;
     }
 
     &__item {

@@ -15,7 +15,6 @@ class BeerDetails extends Component {
   };
   componentDidUpdate = prevProps => {
     if (prevProps.beer === this.props.beer) {
-      console.log("called updated");
       this.props.fetchBeer(this.props.match.params.id);
     }
   };
