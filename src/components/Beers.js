@@ -13,18 +13,18 @@ class Beers extends Component {
   };
 
   componentDidMount = () => {
-    this.props.fetchBeers();
-  };
-  changeLoading = () => {
-    this.setState({ isLoading: !this.state.isLoading });
+    this.props.fetchBeers(this.changeLoading);
   };
   componentDidUpdate = prevProps => {
     if (
       this.props.searchTerm.length === 0 &&
       prevProps.searchTerm.length !== 0
     ) {
-      this.props.fetchBeers();
+      this.props.fetchBeers(this.changeLoading);
     }
+  };
+  changeLoading = () => {
+    this.setState({ isLoading: !this.state.isLoading });
   };
 
   handleScroll = e => {
@@ -54,14 +54,14 @@ class Beers extends Component {
   };
 
   render() {
-    if (this.props.beers.length === 0) {
-      return <Spinner />;
+    if (this.props.beers.length === 0 && !this.state.isLoading) {
+      return <div className="beers__notfound">No beers found ...</div>;
     }
 
     return (
       <div onScroll={this.handleScroll} className="beers">
+        {this.state.isLoading ? <Spinner /> : ""}
         {this.renderBeers()}
-        {this.state.isLoading ? <Spinner bottom={"bottom"} /> : ""}
       </div>
     );
   }

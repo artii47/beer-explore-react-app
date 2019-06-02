@@ -43,7 +43,9 @@ class Modal extends Component {
                 >
                   <React.Fragment>
                     <div className="modal__youmayalsolike__beername">
-                      {beer.name}
+                      {beer.name.length < 20
+                        ? beer.name
+                        : beer.name.slice(0, 19).concat("...")}
                     </div>
                     <img
                       className="modal__youmayalsolike__img"

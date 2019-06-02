@@ -8,9 +8,11 @@ import {
 } from "./types";
 import beers from "../apis/beers";
 
-export const fetchBeers = () => async dispatch => {
+export const fetchBeers = changeLoading => async dispatch => {
+  changeLoading();
   const response = await beers.get("/beers");
   dispatch({ type: FETCH_BEERS, payload: response.data });
+  changeLoading();
 };
 
 export const fetchSearchBeers = searchTerm => async (dispatch, getState) => {
