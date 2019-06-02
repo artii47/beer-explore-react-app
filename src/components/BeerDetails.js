@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Modal from "./Modal";
 import { connect } from "react-redux";
-import { fetchBeer, reset } from "../actions";
+import { fetchBeer, resetBeer } from "../actions";
 import Spinner from "./spinner";
 import PropTypes from "prop-types";
 import _ from "lodash";
@@ -11,7 +11,7 @@ class BeerDetails extends Component {
     this.props.fetchBeer(this.props.match.params.id);
   };
   componentWillUnmount = () => {
-    this.props.reset();
+    this.props.resetBeer();
   };
   componentDidUpdate = prevProps => {
     if (prevProps.beer === this.props.beer) {
@@ -53,7 +53,7 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { fetchBeer, reset }
+  { fetchBeer, resetBeer }
 )(BeerDetails);
 
 BeerDetails.propTypes = {

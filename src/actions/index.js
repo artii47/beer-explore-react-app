@@ -1,4 +1,11 @@
-import { FETCH_PAGE, FETCH_BEERS, FETCH_BEER, RESET, SEARCH } from "./types";
+import {
+  FETCH_PAGE,
+  FETCH_BEERS,
+  FETCH_BEER,
+  RESET_BEER,
+  RESET_SEARCH,
+  SEARCH
+} from "./types";
 import beers from "../apis/beers";
 
 export const fetchBeers = () => async dispatch => {
@@ -32,13 +39,19 @@ export const fetchPage = (page, changeLoading) => async dispatch => {
   changeLoading();
 };
 
-export const reset = () => {
+export const resetBeer = () => {
   return {
-    type: RESET
+    type: RESET_BEER
   };
 };
 
-export const search = value => {
+export const resetSearch = () => {
+  return {
+    type: RESET_SEARCH
+  };
+};
+
+export const updateSearch = value => {
   return {
     type: SEARCH,
     payload: value.toLowerCase()
