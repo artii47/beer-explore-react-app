@@ -31,31 +31,7 @@ class Modal extends Component {
         <div className="modal__youmayalsolike">
           <h3 className="modal__youmayalsolike__text">You may also like</h3>
 
-          {this.props
-            .renderYouMayAlsoLike()
-            .slice(0, 3)
-            .map(beer => {
-              return (
-                <Link
-                  className="modal__youmayalsolike__item"
-                  to={`/beer/${beer.id}`}
-                  key={beer.id}
-                >
-                  <React.Fragment>
-                    <div className="modal__youmayalsolike__beername">
-                      {beer.name.length < 20
-                        ? beer.name
-                        : beer.name.slice(0, 19).concat("...")}
-                    </div>
-                    <img
-                      className="modal__youmayalsolike__img"
-                      src={beer.image_url}
-                      alt={beer.name}
-                    />
-                  </React.Fragment>
-                </Link>
-              );
-            })}
+          {this.props.renderSuggestedBeers()}
         </div>
       </div>
     );

@@ -68,14 +68,21 @@
 
   &__youmayalsolike {
     grid-row: 3/4;
-    grid-column: 5/13;
+    grid-column: 5/12;
+    width: 100%;
     display: grid;
     grid-template-rows: min-content 10rem 10rem;
-    grid-template-columns: repeat(3, 20rem);
+    grid-template-columns: repeat(3, minmax(25rem, 20rem));
     justify-self: center;
+    justify-content: center;
     text-align: center;
     padding-bottom: 2rem;
     border-bottom: 2px solid #ccc;
+
+    @media only screen and (max-width: 1600px) {
+      grid-column: 1/-1;
+      padding-bottom: 0;
+    }
 
     &__text {
       grid-column: 1/-1;
