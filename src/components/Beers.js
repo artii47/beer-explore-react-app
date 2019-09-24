@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { fetchBeers, fetchPage, fetchSearchBeers } from "../actions";
 import Card from "./Card";
@@ -6,41 +6,55 @@ import Spinner from "./spinner";
 import PropTypes from "prop-types";
 import "../scss/Beers.scss";
 
-class Beers extends Component {
-  state = {
-    page: 2,
-    isLoading: false
-  };
+const Beers = props => {
+  const [page, setPage] = useState(2);
+  const [loading, setLoading] = useState(false);
 
-  componentDidMount = () => {
-    this.props.fetchBeers(this.changeLoading);
-  };
-  componentDidUpdate = prevProps => {
-    if (
-      this.props.searchTerm.length === 0 &&
-      prevProps.searchTerm.length !== 0
-    ) {
-      this.props.fetchBeers(this.changeLoading);
+  useEffect(() => {
+    props.fetchBeers();
+  }, []);
+
+  useEffect(() => {
+    if (props.searchTerm.length === 0 && props.beers.length !== 0) {
+      props.fetchBeers();
+      console.log(props.searchTerm.length);
     }
-  };
-  changeLoading = () => {
-    this.setState({ isLoading: !this.state.isLoading });
+  }, [props.searchTerm.length]);
+
+  useEffect(() => {
+    if (props.searchTerm.length !== 0) {
+      props.fetchSearchBeers(props.searchTerm);
+    }
+  }, [props.searchTerm]);
+
+  // componentDidUpdate = prevProps => {
+  //   if (
+  //     this.props.searchTerm.length === 0 &&
+  //     prevProps.searchTerm.length !== 0
+  //   ) {
+  //     this.props.fetchBeers(this.changeLoading);
+  //   }
+  //   if (this.props.searchTerm !== prevProps.searchTerm) {
+  //     this.props.fetchSearchBeers(this.props.searchTerm);
+  //   }
+  // };
+
+  const changeLoading = () => {
+    setLoading(loading => !loading);
   };
 
-  handleScroll = e => {
+  const handleScroll = e => {
     let element = e.target;
     const scrollEnd =
       element.scrollHeight - element.scrollTop === element.clientHeight;
-    if (scrollEnd && this.props.searchTerm.length === 0) {
-      this.setState(currState => ({
-        page: currState.page + 1
-      }));
-      this.props.fetchPage(this.state.page, this.changeLoading);
+    if (scrollEnd && props.searchTerm.length === 0) {
+      setPage(page + 1);
+      props.fetchPage(page, changeLoading);
     }
   };
 
-  renderBeers = () => {
-    return this.props.beers.map(beer => {
+  const renderBeers = () => {
+    return props.beers.map(beer => {
       return (
         <Card
           key={beer.id}
@@ -53,19 +67,17 @@ class Beers extends Component {
     });
   };
 
-  render() {
-    if (this.props.beers.length === 0 && !this.state.isLoading) {
-      return <div className="beers__notfound">No beers found ...</div>;
-    }
-
-    return (
-      <div onScroll={this.handleScroll} className="beers">
-        {this.state.isLoading ? <Spinner /> : ""}
-        {this.renderBeers()}
-      </div>
-    );
+  if (props.beers.length === 0 && props.searchTerm.length !== 0) {
+    return <div className="beers__notfound">No beers found ...</div>;
   }
-}
+
+  return (
+    <div onScroll={handleScroll} className="beers">
+      {props.beers.length === 0 || loading ? <Spinner /> : ""}
+      {renderBeers()}
+    </div>
+  );
+};
 
 const mapStateToProps = state => {
   return { beers: Object.values(state.beers), searchTerm: state.searchTerm };

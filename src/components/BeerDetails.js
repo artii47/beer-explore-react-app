@@ -52,7 +52,6 @@ class BeerDetails extends Component {
     if (!this.props.beer) {
       return <Spinner />;
     }
-
     return (
       <div>
         <Modal

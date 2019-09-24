@@ -10,10 +10,8 @@ import beers from "../apis/beers";
 import _ from "lodash";
 
 export const fetchBeers = changeLoading => async dispatch => {
-  changeLoading();
   const response = await beers.get("/beers");
   dispatch({ type: FETCH_BEERS, payload: response.data });
-  changeLoading();
 };
 
 export const fetchSearchBeers = searchTerm => async (dispatch, getState) => {
@@ -37,7 +35,6 @@ export const fetchBeer = beerId => async dispatch => {
 export const fetchPage = (page, changeLoading) => async dispatch => {
   changeLoading();
   const response = await beers.get(`/beers?page=${page}`);
-
   dispatch({ type: FETCH_PAGE, payload: response.data });
   changeLoading();
 };
@@ -56,7 +53,6 @@ export const fetchSuggestedBeers = () => async (dispatch, getState) => {
     type: "FETCH_SUGGESTED",
     payload: _.shuffle(suggestedBeers)
   });
-  console.log("done");
 };
 
 export const resetBeer = () => {

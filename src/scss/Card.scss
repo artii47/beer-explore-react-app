@@ -30,11 +30,11 @@
 
     &::after {
       content: "";
+      position: absolute;
       height: 4px;
       width: 100%;
       display: block;
       background-color: rgba(45, 46, 43, 0.781);
-      position: absolute;
       bottom: 0;
       left: 0;
       transform: scaleX(0);
@@ -49,6 +49,7 @@
   &__name {
     grid-row: 2/3;
     grid-column: 1/-1;
+    font-size: 2.2rem;
     width: 100%;
     text-align: center;
     position: relative;
@@ -75,7 +76,9 @@
 
   &__description {
     margin: 0 2rem;
+    text-align: center;
     grid-row: 3/4;
     grid-column: 1/-1;
+    font-family: "Manjari", sans-serif;
   }
 }
