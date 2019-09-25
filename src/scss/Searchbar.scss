@@ -1,6 +1,10 @@
 .searchbar {
-  grid-column: 3/4;
   margin: 3rem 0;
+  ::placeholder {
+    @media only screen and (max-width: 1300px) {
+      font-size: 2.5rem;
+    }
+  }
   @media only screen and (max-width: 500px) {
     margin: 1rem 0;
   }
@@ -13,11 +17,11 @@
     border: 0;
     border-radius: 100px;
     outline: none;
-    width: 40rem;
+    max-width: 100%;
     transition: all 0.3s;
     box-shadow: 0 1rem 2rem rgba(#000, 0.1);
     @media only screen and (max-width: 500px) {
-      width: 30rem;
+      width: 100%;
     }
   }
 }

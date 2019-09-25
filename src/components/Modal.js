@@ -1,48 +1,42 @@
-import React, { Component } from "react";
+import React from "react";
 import "../scss/Modal.scss";
 import history from "../history";
 import Spinner from "./spinner";
 import crossSvg from "../svg/cross.svg";
-import { Link } from "react-router-dom";
 
-class Modal extends Component {
-  renderModalContent = () => {
-    if (!this.props.name && !this.props.image_url) {
+const Modal = props => {
+  const renderModalContent = () => {
+    if (!props.name && !props.image_url) {
       return <Spinner />;
     }
     return (
       <div onClick={e => e.stopPropagation()} className="modal__content">
+        <div className="modal__name">{props.name}</div>
         <img
           src={crossSvg}
           onClick={() => history.push("/")}
           className="modal__cancel"
-          alt={this.props.name}
+          alt={props.name}
         />
-        <img
-          className="modal__img"
-          src={this.props.img}
-          alt={this.props.name}
-        />
-        <div className="modal__tagline">
-          <i>{this.props.tagline}</i>
+        <div className="modal__beer-box">
+          <img className="modal__img" src={props.img} alt={props.name} />
+          <div className="modal__tagline">
+            <i>{props.tagline}</i>
+          </div>
         </div>
-        <div className="modal__name">{this.props.name}</div>
-        <div className="modal__desc">{this.props.description}</div>
+        <div className="modal__desc">{props.description}</div>
+        <h3 className="modal__text">You may also like</h3>
         <div className="modal__youmayalsolike">
-          <h3 className="modal__youmayalsolike__text">You may also like</h3>
-
-          {this.props.renderSuggestedBeers()}
+          {props.renderSuggestedBeers()}
         </div>
       </div>
     );
   };
-  render() {
-    return (
-      <div onClick={() => history.push("/")} className="modal">
-        {this.renderModalContent()}
-      </div>
-    );
-  }
-}
+  return (
+    <div onClick={() => history.push("/")} className="modal">
+      {renderModalContent()}
+    </div>
+  );
+};
 
 export default Modal;

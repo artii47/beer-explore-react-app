@@ -1,31 +1,35 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import Modal from "./Modal";
 import { connect } from "react-redux";
 import { fetchBeer, resetBeer, fetchSuggestedBeers } from "../actions";
 import Spinner from "./spinner";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import _ from "lodash";
 
-class BeerDetails extends Component {
-  componentDidMount = () => {
-    this.props.fetchBeer(this.props.match.params.id);
-    this.props.fetchSuggestedBeers();
-  };
-  componentWillUnmount = () => {
-    this.props.resetBeer();
-  };
-  componentDidUpdate = prevProps => {
-    if (prevProps.match.url !== this.props.match.url) {
-      this.props.fetchBeer(this.props.match.params.id);
-      this.props.fetchSuggestedBeers();
+const BeerDetails = props => {
+  useEffect(() => {
+    props.fetchBeer(props.match.params.id);
+  }, []);
+
+  useEffect(() => {
+    props.fetchBeer(props.match.params.id);
+  }, [props.match.params.id]);
+
+  useEffect(() => {
+    props.fetchSuggestedBeers();
+  }, [props.beer.name]);
+
+  useEffect(() => {
+    return () => {
+      props.resetBeer();
+    };
+  }, []);
+
+  const renderSuggestedBeers = () => {
+    if (props.suggestedBeers.length === 0) {
+      return <div></div>;
     }
-    if (!this.props.beer.name) {
-      this.props.fetchSuggestedBeers();
-    }
-  };
-  renderSuggestedBeers = () => {
-    return this.props.suggestedBeers.slice(0, 3).map(beer => {
+    return props.suggestedBeers.slice(0, 3).map(beer => {
       return (
         <Link
           className="modal__youmayalsolike__item"
@@ -34,9 +38,9 @@ class BeerDetails extends Component {
         >
           <React.Fragment>
             <div className="modal__youmayalsolike__beername">
-              {beer.name.length < 20
+              {beer.name.length < 15
                 ? beer.name
-                : beer.name.slice(0, 19).concat("...")}
+                : beer.name.slice(0, 15).concat("...")}
             </div>
             <img
               className="modal__youmayalsolike__img"
@@ -48,23 +52,22 @@ class BeerDetails extends Component {
       );
     });
   };
-  render() {
-    if (!this.props.beer) {
-      return <Spinner />;
-    }
-    return (
-      <div>
-        <Modal
-          tagline={this.props.beer.tagline}
-          name={this.props.beer.name}
-          img={this.props.beer.image_url}
-          description={this.props.beer.description}
-          renderSuggestedBeers={this.renderSuggestedBeers}
-        />
-      </div>
-    );
+
+  if (!props.beer) {
+    return <Spinner />;
   }
-}
+  return (
+    <div>
+      <Modal
+        tagline={props.beer.tagline}
+        name={props.beer.name}
+        img={props.beer.image_url}
+        description={props.beer.description}
+        renderSuggestedBeers={renderSuggestedBeers}
+      />
+    </div>
+  );
+};
 
 const mapStateToProps = state => {
   return {

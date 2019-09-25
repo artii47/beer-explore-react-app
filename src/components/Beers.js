@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { fetchBeers, fetchPage, fetchSearchBeers } from "../actions";
 import Card from "./Card";
@@ -17,7 +17,6 @@ const Beers = props => {
   useEffect(() => {
     if (props.searchTerm.length === 0 && props.beers.length !== 0) {
       props.fetchBeers();
-      console.log(props.searchTerm.length);
     }
   }, [props.searchTerm.length]);
 

@@ -44,8 +44,8 @@ export const fetchSuggestedBeers = () => async (dispatch, getState) => {
   let fetchedBeer = getState().beer;
   let suggestedBeers = response.data.filter(beer => {
     return (
-      beer.abv <= fetchedBeer.abv + 2 &&
-      beer.abv >= fetchedBeer.abv - 2 &&
+      beer.abv <= fetchedBeer.abv + 4 &&
+      beer.abv >= fetchedBeer.abv - 4 &&
       beer.name !== fetchedBeer.name
     );
   });
