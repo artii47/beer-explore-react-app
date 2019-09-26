@@ -1,24 +1,23 @@
 import React, { Component } from "react";
 import Beers from "./Beers";
 import "../scss/base.scss";
-import "../scss/App.scss";
 import { Router, Route } from "react-router-dom";
 import BeerDetails from "./BeerDetails";
 import history from "../history";
 import Header from "./Header";
 
+import * as S from "../styled-components/app";
+
 class App extends Component {
   render() {
     return (
-      <div className="app">
+      <S.App>
         <Header />
-        <div className="container">
-          <Router history={history}>
-            <Route path="/" component={Beers} />
-            <Route path="/beer/:id" component={BeerDetails} />
-          </Router>
-        </div>
-      </div>
+        <Router history={history}>
+          <Route path="/" component={Beers} />
+          <Route path="/beer/:id" component={BeerDetails} />
+        </Router>
+      </S.App>
     );
   }
 }

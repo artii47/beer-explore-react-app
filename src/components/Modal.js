@@ -3,6 +3,7 @@ import "../scss/Modal.scss";
 import history from "../history";
 import Spinner from "./spinner";
 import crossSvg from "../svg/cross.svg";
+import * as S from "../styled-components/modal";
 
 const Modal = props => {
   const renderModalContent = () => {
@@ -10,32 +11,29 @@ const Modal = props => {
       return <Spinner />;
     }
     return (
-      <div onClick={e => e.stopPropagation()} className="modal__content">
-        <div className="modal__name">{props.name}</div>
-        <img
+      <S.ModalContent onClick={e => e.stopPropagation()}>
+        <S.ModalBeerName>{props.name}</S.ModalBeerName>
+        <S.ModalCancel
           src={crossSvg}
           onClick={() => history.push("/")}
-          className="modal__cancel"
-          alt={props.name}
+          alt={"Cancel"}
         />
-        <div className="modal__beer-box">
-          <img className="modal__img" src={props.img} alt={props.name} />
-          <div className="modal__tagline">
+        <S.ModalBeerBox>
+          <S.ModalBeerImg src={props.img} alt={props.name} />
+          <S.ModalBeerTagline>
             <i>{props.tagline}</i>
-          </div>
-        </div>
-        <div className="modal__desc">{props.description}</div>
-        <h3 className="modal__text">You may also like</h3>
-        <div className="modal__youmayalsolike">
+          </S.ModalBeerTagline>
+        </S.ModalBeerBox>
+        <S.ModalBeerDesc>{props.description}</S.ModalBeerDesc>
+        <S.ModalText>You may also like</S.ModalText>
+        <S.ModalSuggestedBeers>
           {props.renderSuggestedBeers()}
-        </div>
-      </div>
+        </S.ModalSuggestedBeers>
+      </S.ModalContent>
     );
   };
   return (
-    <div onClick={() => history.push("/")} className="modal">
-      {renderModalContent()}
-    </div>
+    <S.Modal onClick={() => history.push("/")}>{renderModalContent()}</S.Modal>
   );
 };
 

@@ -1,4 +1,6 @@
-.beers {
+import styled from "styled-components";
+
+export const Beers = styled.div`
   position: relative;
   display: grid;
   height: 80vh;
@@ -10,14 +12,14 @@
   overflow-y: scroll;
   grid-auto-flow: row;
 
-  &__notfound {
-    display: flex;
-    font-size: 5rem;
-    color: yellowgreen;
-    justify-content: center;
-  }
-
   @media only screen and (max-width: 450px) {
     grid-template-columns: repeat(auto-fill, minmax(30rem, min-content));
   }
-}
+`;
+
+export const BeersNotFound = styled.div`
+  display: flex;
+  font-size: 5rem;
+  color: yellowgreen;
+  justify-content: center;
+`;

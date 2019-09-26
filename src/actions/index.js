@@ -4,7 +4,8 @@ import {
   FETCH_BEER,
   RESET_BEER,
   RESET_SEARCH,
-  SEARCH
+  SEARCH,
+  RESET_SUGGESTED_BEERS
 } from "./types";
 import beers from "../apis/beers";
 import _ from "lodash";
@@ -64,6 +65,12 @@ export const resetBeer = () => {
 export const resetSearch = () => {
   return {
     type: RESET_SEARCH
+  };
+};
+
+export const resetSuggestedBeers = () => {
+  return {
+    type: RESET_SUGGESTED_BEERS
   };
 };
 

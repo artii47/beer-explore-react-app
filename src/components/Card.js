@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../scss/Card.scss";
+import * as S from "../styled-components/card";
 
 const Card = props => {
   const renderDescription = () => {
@@ -9,14 +10,14 @@ const Card = props => {
       : props.desc;
   };
   return (
-    <div className="card">
-      <img alt={props.beerName} className="card__img" src={props.imgUrl} />
-      <div className="card__name">{props.beerName}</div>
-      <div className="card__description">{renderDescription()}</div>
+    <S.Card>
+      <S.CardImg alt={props.beerName} src={props.imgUrl} />
+      <S.CardName>{props.beerName}</S.CardName>
+      <S.CardDesc>{renderDescription()}</S.CardDesc>
       <Link to={`/beer/${props.beerId}`} className="card__btn">
         Details
       </Link>
-    </div>
+    </S.Card>
   );
 };
 

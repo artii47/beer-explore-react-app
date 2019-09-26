@@ -1,16 +1,16 @@
 import React from "react";
 import DebouncedSearchbar from "./DebouncedSearchbar";
-import "../scss/Header.scss";
+import * as S from "../styled-components/header";
 
 const Header = () => {
   return (
-    <div className="header">
-      <div className="header__logo">
-        <span className="header__logo--1">BEER </span>
-        <span className="header__logo--2"> EXPLORE</span>
-      </div>
+    <S.Header>
+      <S.HeaderLogo>
+        <S.HeaderLogo1>BEER </S.HeaderLogo1>
+        <S.HeaderLogo2> EXPLORE</S.HeaderLogo2>
+      </S.HeaderLogo>
       <DebouncedSearchbar />
-    </div>
+    </S.Header>
   );
 };
 

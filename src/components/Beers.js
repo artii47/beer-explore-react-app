@@ -4,7 +4,8 @@ import { fetchBeers, fetchPage, fetchSearchBeers } from "../actions";
 import Card from "./Card";
 import Spinner from "./spinner";
 import PropTypes from "prop-types";
-import "../scss/Beers.scss";
+
+import * as S from "../styled-components/beers";
 
 const Beers = props => {
   const [page, setPage] = useState(2);
@@ -25,18 +26,6 @@ const Beers = props => {
       props.fetchSearchBeers(props.searchTerm);
     }
   }, [props.searchTerm]);
-
-  // componentDidUpdate = prevProps => {
-  //   if (
-  //     this.props.searchTerm.length === 0 &&
-  //     prevProps.searchTerm.length !== 0
-  //   ) {
-  //     this.props.fetchBeers(this.changeLoading);
-  //   }
-  //   if (this.props.searchTerm !== prevProps.searchTerm) {
-  //     this.props.fetchSearchBeers(this.props.searchTerm);
-  //   }
-  // };
 
   const changeLoading = () => {
     setLoading(loading => !loading);
@@ -67,14 +56,14 @@ const Beers = props => {
   };
 
   if (props.beers.length === 0 && props.searchTerm.length !== 0) {
-    return <div className="beers__notfound">No beers found ...</div>;
+    return <S.BeersNotFound>No beers found ...</S.BeersNotFound>;
   }
 
   return (
-    <div onScroll={handleScroll} className="beers">
+    <S.Beers onScroll={handleScroll}>
       {props.beers.length === 0 || loading ? <Spinner /> : ""}
       {renderBeers()}
-    </div>
+    </S.Beers>
   );
 };
 

@@ -1,10 +1,16 @@
 import React, { useEffect } from "react";
 import Modal from "./Modal";
 import { connect } from "react-redux";
-import { fetchBeer, resetBeer, fetchSuggestedBeers } from "../actions";
+import {
+  fetchBeer,
+  resetBeer,
+  fetchSuggestedBeers,
+  resetSuggestedBeers
+} from "../actions";
 import Spinner from "./spinner";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import * as S from "../styled-components/suggestedBeers";
 
 const BeerDetails = props => {
   useEffect(() => {
@@ -12,16 +18,21 @@ const BeerDetails = props => {
   }, []);
 
   useEffect(() => {
-    props.fetchBeer(props.match.params.id);
+    if (props.beer.name) {
+      props.fetchBeer(props.match.params.id);
+    }
   }, [props.match.params.id]);
 
   useEffect(() => {
-    props.fetchSuggestedBeers();
+    if (props.beer.name) {
+      props.fetchSuggestedBeers();
+    }
   }, [props.beer.name]);
 
   useEffect(() => {
     return () => {
       props.resetBeer();
+      props.resetSuggestedBeers();
     };
   }, []);
 
@@ -32,21 +43,17 @@ const BeerDetails = props => {
     return props.suggestedBeers.slice(0, 3).map(beer => {
       return (
         <Link
-          className="modal__youmayalsolike__item"
+          className="modal__youmayalsolike-item"
           to={`/beer/${beer.id}`}
           key={beer.id}
         >
           <React.Fragment>
-            <div className="modal__youmayalsolike__beername">
+            <S.SuggestedBeerName>
               {beer.name.length < 15
                 ? beer.name
                 : beer.name.slice(0, 15).concat("...")}
-            </div>
-            <img
-              className="modal__youmayalsolike__img"
-              src={beer.image_url}
-              alt={beer.name}
-            />
+            </S.SuggestedBeerName>
+            <S.SuggestedBeerImg src={beer.image_url} alt={beer.name} />
           </React.Fragment>
         </Link>
       );
@@ -79,7 +86,7 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { fetchBeer, resetBeer, fetchSuggestedBeers }
+  { fetchBeer, resetBeer, fetchSuggestedBeers, resetSuggestedBeers }
 )(BeerDetails);
 
 BeerDetails.propTypes = {

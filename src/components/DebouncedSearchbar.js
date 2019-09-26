@@ -1,28 +1,41 @@
 import React, { useState, useEffect } from "react";
-import "../scss/Searchbar.scss";
 import { connect } from "react-redux";
 import { updateSearch, fetchSearchBeers } from "../actions";
 import PropTypes from "prop-types";
 import { debounce } from "lodash";
+import * as S from "../styled-components/searchbar";
+import { useDebounce } from "./useDebounce";
 
 const DebouncedSearchbar = props => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [results, setResults] = useState([]);
+  const [isSearching, setIsSearching] = useState(false);
 
-  const handleSearchTermChange = debounce(text => {
-    props.updateSearch(text);
-  }, 500);
+  const debouncedSearchTerm = useDebounce(searchTerm, 500);
+
+  //
+  useEffect(() => {
+    if (debouncedSearchTerm) {
+      setIsSearching(true);
+      props.updateSearch(searchTerm);
+    }
+    if (searchTerm.length === 0) {
+      props.updateSearch(searchTerm);
+    }
+  }, [debouncedSearchTerm]);
+
+  //
 
   return (
-    <div className="searchbar">
-      <input
-        className="searchbar__input"
+    <S.Searchbar>
+      <S.SearchbarInput
         onChange={e => {
           setSearchTerm(e.target.value);
-          handleSearchTermChange(e.target.value);
         }}
         placeholder="Type in beer name"
+        value={searchTerm}
       />
-    </div>
+    </S.Searchbar>
   );
 };
 
