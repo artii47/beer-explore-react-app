@@ -1,4 +1,5 @@
 import React from "react";
+import ReactDOM from "react-dom";
 import "../scss/Modal.scss";
 import history from "../history";
 import Spinner from "./spinner";
@@ -32,8 +33,9 @@ const Modal = props => {
       </S.ModalContent>
     );
   };
-  return (
-    <S.Modal onClick={() => history.push("/")}>{renderModalContent()}</S.Modal>
+  return ReactDOM.createPortal(
+    <S.Modal onClick={() => history.push("/")}>{renderModalContent()}</S.Modal>,
+    document.querySelector("#modal")
   );
 };
 
