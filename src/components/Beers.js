@@ -27,6 +27,12 @@ const Beers = props => {
     }
   }, [props.searchTerm]);
 
+  useEffect(() => {
+    if (props.searchTerm.length === 0 && props.beers.length === 0) {
+      props.fetchBeers(props.searchTerm);
+    }
+  }, [props.searchTerm]);
+
   const changeLoading = () => {
     setLoading(loading => !loading);
   };

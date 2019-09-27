@@ -2,21 +2,17 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { updateSearch, fetchSearchBeers } from "../actions";
 import PropTypes from "prop-types";
-import { debounce } from "lodash";
 import * as S from "../styled-components/searchbar";
 import { useDebounce } from "./useDebounce";
 
 const DebouncedSearchbar = props => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [results, setResults] = useState([]);
-  const [isSearching, setIsSearching] = useState(false);
 
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
   //
   useEffect(() => {
     if (debouncedSearchTerm) {
-      setIsSearching(true);
       props.updateSearch(searchTerm);
     }
     if (searchTerm.length === 0) {
