@@ -11,25 +11,27 @@ const Beers = props => {
   const [page, setPage] = useState(2);
   const [loading, setLoading] = useState(false);
 
+  const { fetchBeers, fetchPage, fetchSearchBeers } = props;
+
   useEffect(() => {
-    props.fetchBeers();
+    fetchBeers();
   }, []);
 
   useEffect(() => {
     if (props.searchTerm.length === 0 && props.beers.length !== 0) {
-      props.fetchBeers();
+      fetchBeers();
     }
   }, [props.searchTerm.length]);
 
   useEffect(() => {
     if (props.searchTerm.length !== 0) {
-      props.fetchSearchBeers(props.searchTerm);
+      fetchSearchBeers(props.searchTerm);
     }
   }, [props.searchTerm]);
 
   useEffect(() => {
     if (props.searchTerm.length === 0 && props.beers.length === 0) {
-      props.fetchBeers(props.searchTerm);
+      fetchBeers(props.searchTerm);
     }
   }, [props.searchTerm]);
 
@@ -43,7 +45,7 @@ const Beers = props => {
       element.scrollHeight - element.scrollTop === element.clientHeight;
     if (scrollEnd && props.searchTerm.length === 0) {
       setPage(page + 1);
-      props.fetchPage(page, changeLoading);
+      fetchPage(page, changeLoading);
     }
   };
 

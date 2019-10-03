@@ -5,8 +5,26 @@ export const SuggestedBeerName = styled.div`
   @media only screen and (max-width: 700px) {
     font-size: 1rem;
   }
+  @media only screen and (max-height: 450px) {
+    display: none;
+  }
 `;
 
 export const SuggestedBeerImg = styled.img`
-  height: 10vw;
+  height: 15rem;
+  @media only screen and (max-width: 700px) {
+    height: 10rem;
+  }
+  @media only screen and (max-height: 700px) {
+    height: 10rem;
+    width: 3rem;
+  }
+  @media only screen and (max-height: 550px) {
+    height: 8rem;
+    width: 3rem;
+  }
+
+  @media only screen and (max-height: 450px) {
+    display: none;
+  }
 `;

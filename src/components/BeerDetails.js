@@ -13,19 +13,20 @@ import { Link } from "react-router-dom";
 import * as S from "../styled-components/suggestedBeers";
 
 const BeerDetails = props => {
+  const { fetchBeer, fetchSuggestedBeers } = props;
   useEffect(() => {
-    props.fetchBeer(props.match.params.id);
+    fetchBeer(props.match.params.id);
   }, []);
 
   useEffect(() => {
     if (props.beer.name) {
-      props.fetchBeer(props.match.params.id);
+      fetchBeer(props.match.params.id);
     }
   }, [props.match.params.id]);
 
   useEffect(() => {
     if (props.beer.name) {
-      props.fetchSuggestedBeers();
+      fetchSuggestedBeers();
     }
   }, [props.beer.name]);
 

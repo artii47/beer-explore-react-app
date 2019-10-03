@@ -23,6 +23,9 @@ export const Modal = styled.div`
   @media only screen and (max-width: 700px) {
     line-height: 1.2;
   }
+  @media only screen and (max-height: 700px) {
+    line-height: 1.1;
+  }
 `;
 
 export const ModalContent = styled.div`
@@ -74,10 +77,15 @@ export const ModalBeerBox = styled.div`
   flex-direction: column;
 `;
 export const ModalBeerImg = styled.img`
-  width: 5rem;
-  height: 20rem;
+  width: 8rem;
+  height: 22rem;
   @media only screen and (max-width: 800px) {
     height: 15rem;
+    width: 5rem;
+  }
+  @media only screen and (max-height: 600px) {
+    height: 12rem;
+    width: 4rem;
   }
 `;
 export const ModalBeerTagline = styled.div``;
@@ -100,6 +108,10 @@ export const ModalText = styled.h3`
     grid-column: 1/-1;
   }
   @media only screen and (max-width: 400px) {
+    display: none;
+  }
+
+  @media only screen and (max-height: 500px) {
     display: none;
   }
 `;

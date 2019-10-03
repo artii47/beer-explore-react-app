@@ -10,7 +10,7 @@ import {
 import beers from "../apis/beers";
 import _ from "lodash";
 
-export const fetchBeers = changeLoading => async dispatch => {
+export const fetchBeers = () => async dispatch => {
   const response = await beers.get("/beers");
   dispatch({ type: FETCH_BEERS, payload: response.data });
 };
