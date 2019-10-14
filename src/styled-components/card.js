@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Card = styled.div`
   background-color: rgba(0, 0, 0, 0.068);
@@ -47,4 +48,41 @@ export const CardDesc = styled.div`
   grid-row: 3/4;
   grid-column: 1/-1;
   font-family: "Manjari", sans-serif;
+`;
+
+export const CardLinkButton = styled(Link)`
+  text-decoration: none;
+  text-align: center;
+  border: none;
+  text-transform: uppercase;
+  font-weight: 400;
+  letter-spacing: 0.2rem;
+  background-color: rgba(250, 250, 250, 0.507);
+  align-self: flex-end;
+  width: 100%;
+  font-size: 2rem;
+  padding: 2rem 7rem;
+  position: relative;
+  transition: all 0.3s;
+  outline: none;
+  color: rgb(35, 36, 28);
+  cursor: pointer;
+  box-shadow: 0rem -0.1rem 0.7rem rgba(0, 0, 0, 0.5);
+
+  :after {
+    content: "";
+    position: absolute;
+    height: 4px;
+    width: 100%;
+    display: block;
+    background-color: rgba(45, 46, 43, 0.781);
+    bottom: 0;
+    left: 0;
+    transform: scaleX(0);
+    transition: all 0.3s;
+  }
+
+  :hover:after {
+    transform: scaleX(1);
+  }
 `;

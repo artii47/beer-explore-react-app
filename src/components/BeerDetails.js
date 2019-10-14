@@ -43,11 +43,7 @@ const BeerDetails = props => {
     }
     return props.suggestedBeers.slice(0, 3).map(beer => {
       return (
-        <Link
-          className="modal__youmayalsolike-item"
-          to={`/beer/${beer.id}`}
-          key={beer.id}
-        >
+        <S.SuggestedItem to={`/beer/${beer.id}`} key={beer.id}>
           <React.Fragment>
             <S.SuggestedBeerName>
               {beer.name.length < 15
@@ -56,7 +52,7 @@ const BeerDetails = props => {
             </S.SuggestedBeerName>
             <S.SuggestedBeerImg src={beer.image_url} alt={beer.name} />
           </React.Fragment>
-        </Link>
+        </S.SuggestedItem>
       );
     });
   };

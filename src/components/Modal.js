@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "../scss/Modal.scss";
 import history from "../history";
 import Spinner from "./spinner";
 import crossSvg from "../svg/cross.svg";

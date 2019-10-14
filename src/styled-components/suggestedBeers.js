@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const SuggestedBeerName = styled.div`
   color: rgba(0, 0, 0, 0.7);
@@ -26,5 +27,14 @@ export const SuggestedBeerImg = styled.img`
 
   @media only screen and (max-height: 450px) {
     display: none;
+  }
+`;
+
+export const SuggestedItem = styled(Link)`
+  text-align: center;
+  margin: 0.5rem 5rem;
+  text-decoration: none;
+  @media only screen and (max-width: 700px) {
+    margin: 0 2rem;
   }
 `;

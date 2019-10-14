@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Beers from "./Beers";
-import "../scss/base.scss";
+import "../css/base.css";
 import { Router, Route } from "react-router-dom";
 import BeerDetails from "./BeerDetails";
 import history from "../history";
