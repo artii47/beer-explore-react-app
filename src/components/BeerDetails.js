@@ -9,39 +9,41 @@ import {
 } from "../actions";
 import Spinner from "./spinner";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
 import * as S from "../styled-components/suggestedBeers";
 
 const BeerDetails = props => {
-  const { fetchBeer, fetchSuggestedBeers } = props;
-  useEffect(() => {
-    fetchBeer(props.match.params.id);
-  }, []);
+  const {
+    fetchBeer,
+    fetchSuggestedBeers,
+    match,
+    beer,
+    resetBeer,
+    resetSuggestedBeers,
+    suggestedBeers
+  } = props;
 
   useEffect(() => {
-    if (props.beer.name) {
-      fetchBeer(props.match.params.id);
-    }
-  }, [props.match.params.id]);
+    fetchBeer(match.params.id);
+  }, [fetchBeer, match.params.id]);
 
   useEffect(() => {
-    if (props.beer.name) {
+    if (beer.name) {
       fetchSuggestedBeers();
     }
-  }, [props.beer.name]);
+  }, [beer.name, fetchSuggestedBeers]);
 
   useEffect(() => {
     return () => {
-      props.resetBeer();
-      props.resetSuggestedBeers();
+      resetBeer();
+      resetSuggestedBeers();
     };
-  }, []);
+  }, [resetBeer, resetSuggestedBeers]);
 
   const renderSuggestedBeers = () => {
-    if (props.suggestedBeers.length === 0) {
+    if (suggestedBeers.length === 0) {
       return <div></div>;
     }
-    return props.suggestedBeers.slice(0, 3).map(beer => {
+    return suggestedBeers.slice(0, 3).map(beer => {
       return (
         <S.SuggestedItem to={`/beer/${beer.id}`} key={beer.id}>
           <React.Fragment>
@@ -57,16 +59,16 @@ const BeerDetails = props => {
     });
   };
 
-  if (!props.beer) {
+  if (!beer) {
     return <Spinner />;
   }
   return (
     <div>
       <Modal
-        tagline={props.beer.tagline}
-        name={props.beer.name}
-        img={props.beer.image_url}
-        description={props.beer.description}
+        tagline={beer.tagline}
+        name={beer.name}
+        img={beer.image_url}
+        description={beer.description}
         renderSuggestedBeers={renderSuggestedBeers}
       />
     </div>

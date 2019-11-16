@@ -6,6 +6,7 @@ import * as S from "../styled-components/searchbar";
 import { useDebounce } from "./useDebounce";
 
 const DebouncedSearchbar = props => {
+  const { updateSearch } = props;
   const [searchTerm, setSearchTerm] = useState("");
 
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
@@ -13,12 +14,12 @@ const DebouncedSearchbar = props => {
   //
   useEffect(() => {
     if (debouncedSearchTerm) {
-      props.updateSearch(searchTerm);
+      updateSearch(searchTerm);
     }
     if (searchTerm.length === 0) {
-      props.updateSearch(searchTerm);
+      updateSearch(searchTerm);
     }
-  }, [debouncedSearchTerm]);
+  }, [debouncedSearchTerm, updateSearch, searchTerm]);
 
   return (
     <S.Searchbar>

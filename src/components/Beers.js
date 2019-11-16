@@ -11,29 +11,29 @@ const Beers = props => {
   const [page, setPage] = useState(2);
   const [loading, setLoading] = useState(false);
 
-  const { fetchBeers, fetchPage, fetchSearchBeers } = props;
+  const { fetchBeers, fetchPage, fetchSearchBeers, searchTerm, beers } = props;
 
   useEffect(() => {
     fetchBeers();
-  }, []);
+  }, [fetchBeers]);
 
   useEffect(() => {
-    if (props.searchTerm.length === 0 && props.beers.length !== 0) {
+    if (searchTerm.length === 0 && beers.length !== 0) {
       fetchBeers();
     }
-  }, [props.searchTerm.length]);
+  }, [searchTerm.length, fetchBeers, beers.length]);
 
   useEffect(() => {
-    if (props.searchTerm.length !== 0) {
-      fetchSearchBeers(props.searchTerm);
+    if (searchTerm.length !== 0) {
+      fetchSearchBeers(searchTerm);
     }
-  }, [props.searchTerm]);
+  }, [searchTerm, searchTerm.length, fetchSearchBeers]);
 
   useEffect(() => {
-    if (props.searchTerm.length === 0 && props.beers.length === 0) {
-      fetchBeers(props.searchTerm);
+    if (searchTerm.length === 0 && beers.length === 0) {
+      fetchBeers(searchTerm);
     }
-  }, [props.searchTerm]);
+  }, [searchTerm, fetchBeers, beers.length]);
 
   const changeLoading = () => {
     setLoading(loading => !loading);
@@ -43,14 +43,14 @@ const Beers = props => {
     let element = e.target;
     const scrollEnd =
       element.scrollHeight - element.scrollTop === element.clientHeight;
-    if (scrollEnd && props.searchTerm.length === 0) {
+    if (scrollEnd && searchTerm.length === 0) {
       setPage(page + 1);
       fetchPage(page, changeLoading);
     }
   };
 
   const renderBeers = () => {
-    return props.beers.map(beer => {
+    return beers.map(beer => {
       return (
         <Card
           key={beer.id}
@@ -63,13 +63,13 @@ const Beers = props => {
     });
   };
 
-  if (props.beers.length === 0 && props.searchTerm.length !== 0) {
+  if (beers.length === 0 && searchTerm.length !== 0) {
     return <S.BeersNotFound>No beers found ...</S.BeersNotFound>;
   }
 
   return (
     <S.Beers onScroll={handleScroll}>
-      {props.beers.length === 0 || loading ? <Spinner /> : ""}
+      {beers.length === 0 || loading ? <Spinner /> : ""}
       {renderBeers()}
     </S.Beers>
   );
