@@ -20,8 +20,6 @@ const DebouncedSearchbar = props => {
     }
   }, [debouncedSearchTerm]);
 
-  //
-
   return (
     <S.Searchbar>
       <S.SearchbarInput
@@ -39,10 +37,9 @@ const mapStateToProps = state => {
   return { searchTerm: state.searchTerm };
 };
 
-export default connect(
-  mapStateToProps,
-  { updateSearch, fetchSearchBeers }
-)(DebouncedSearchbar);
+export default connect(mapStateToProps, { updateSearch, fetchSearchBeers })(
+  DebouncedSearchbar
+);
 
 DebouncedSearchbar.propTypes = {
   searchTerm: PropTypes.string,

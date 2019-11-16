@@ -79,10 +79,11 @@ const mapStateToProps = state => {
   return { beers: Object.values(state.beers), searchTerm: state.searchTerm };
 };
 
-export default connect(
-  mapStateToProps,
-  { fetchBeers, fetchPage, fetchSearchBeers }
-)(Beers);
+export default connect(mapStateToProps, {
+  fetchBeers,
+  fetchPage,
+  fetchSearchBeers
+})(Beers);
 
 Beers.propTypes = {
   beers: PropTypes.array,

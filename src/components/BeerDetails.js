@@ -81,10 +81,12 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { fetchBeer, resetBeer, fetchSuggestedBeers, resetSuggestedBeers }
-)(BeerDetails);
+export default connect(mapStateToProps, {
+  fetchBeer,
+  resetBeer,
+  fetchSuggestedBeers,
+  resetSuggestedBeers
+})(BeerDetails);
 
 BeerDetails.propTypes = {
   beer: PropTypes.object

@@ -1,3 +1,6 @@
+import { createGlobalStyle } from "styled-components";
+
+export const GlobalStyles = createGlobalStyle`
 *,
 *::after,
 *::before {
@@ -16,3 +19,5 @@ body {
 html {
   font-size: 62.5%;
 }
+
+`;
