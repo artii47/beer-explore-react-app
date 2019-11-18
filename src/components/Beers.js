@@ -17,11 +17,16 @@ const Beers = props => {
     fetchBeers();
   }, [fetchBeers]);
 
+  // useEffect(() => {
+  //   if (searchTerm.length === 0 && beers.length !== 0) {
+  //     fetchBeers();
+  //   }
+  // }, [searchTerm.length, fetchBeers, beers.length]);
   useEffect(() => {
-    if (searchTerm.length === 0 && beers.length !== 0) {
+    if (!searchTerm.length) {
       fetchBeers();
     }
-  }, [searchTerm.length, fetchBeers, beers.length]);
+  }, [searchTerm.length, fetchBeers]);
 
   useEffect(() => {
     if (searchTerm.length !== 0) {
@@ -34,6 +39,12 @@ const Beers = props => {
       fetchBeers(searchTerm);
     }
   }, [searchTerm, fetchBeers, beers.length]);
+
+  useEffect(() => {
+    if (searchTerm.length === 0 && beers.length === 0) {
+      fetchBeers();
+    }
+  }, [searchTerm.length, fetchBeers, beers.length]);
 
   const changeLoading = () => {
     setLoading(loading => !loading);
