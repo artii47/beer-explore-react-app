@@ -12,9 +12,9 @@ const SuggestedBeers = () => {
     return (
       <S.SuggestedItem to={`/beer/${beer.id}`} key={beer.id}>
         <S.SuggestedBeerName>
-          {beer.name.length < 20
+          {beer.name.length < 30
             ? beer.name
-            : beer.name.slice(0, 20).concat("...")}
+            : beer.name.slice(0, 30).concat("...")}
         </S.SuggestedBeerName>
         <React.Fragment>
           <S.SuggestedBeerImg src={beer.image_url} alt={beer.name} />
