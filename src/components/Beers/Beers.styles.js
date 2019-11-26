@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Beers = styled.div`
   position: relative;
   display: grid;
-  height: 100vh;
+  height: 80vh;
   width: 100vw;
   grid-template-columns: repeat(auto-fill, minmax(38rem, min-content));
   grid-gap: 5rem;

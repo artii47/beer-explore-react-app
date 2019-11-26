@@ -14,11 +14,13 @@ body {
   background-color: rgba(243, 243, 243, 0.849);
   font-size: 2rem;
   line-height: 2;
-  overflow-y: hidden;
 }
 
 html {
   font-size: 62.5%;
+  @media only screen and (max-width: 1000px) {
+    font-size: 57.5%;
+  }
 }
 
 `;

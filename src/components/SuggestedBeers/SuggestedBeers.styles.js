@@ -7,27 +7,20 @@ export const SuggestedBeerName = styled.div`
     font-size: 1rem;
   }
   @media only screen and (max-height: 450px) {
-    display: none;
+    font-size: 0.7rem;
   }
 `;
 
 export const SuggestedBeerImg = styled.img`
   height: 15rem;
   width: 5rem;
-  @media only screen and (max-width: 700px) {
-    height: 10rem;
-  }
-  @media only screen and (max-height: 700px) {
+  @media only screen and (max-height: 800px) {
     height: 10rem;
     width: 3rem;
   }
-  @media only screen and (max-height: 550px) {
-    height: 8rem;
-    width: 3rem;
-  }
-
-  @media only screen and (max-height: 450px) {
-    display: none;
+  @media only screen and (max-height: 600px) {
+    height: 7rem;
+    width: 2rem;
   }
 `;
 
@@ -38,7 +31,6 @@ export const SuggestedItem = styled(Link)`
   align-items: center;
   justify-content: flex-end;
   width: 10rem;
-  height: 20rem;
   margin: 0.5rem 5rem;
   text-decoration: none;
   @media only screen and (max-width: 700px) {

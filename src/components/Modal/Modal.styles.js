@@ -6,6 +6,10 @@ export const Cancel = styled(CancelSvg)`
   right: 2rem;
   cursor: pointer;
   top: 2rem;
+  @media only screen and (max-width: 800px) {
+    top: 0.5rem;
+    right: 0.5rem;
+  }
 `;
 
 export const Modal = styled.div`
@@ -83,25 +87,40 @@ export const ModalBeerBox = styled.div`
   justify-content: center;
   text-align: center;
   flex-direction: column;
+  @media only screen and (max-width: 1000px) {
+    grid-row: 1/-1;
+  }
 `;
 export const ModalBeerImg = styled.img`
   width: 8rem;
   height: 22rem;
-  @media only screen and (max-width: 800px) {
-    height: 15rem;
+  @media only screen and (max-width: 1100px) {
     width: 5rem;
+    height: 20rem;
+  }
+
+  @media only screen and (max-height: 700px) {
+    width: 4rem;
+    height: 17rem;
   }
   @media only screen and (max-height: 600px) {
+    width: 3rem;
     height: 12rem;
-    width: 4rem;
   }
 `;
-export const ModalBeerTagline = styled.div``;
+export const ModalBeerTagline = styled.div`
+  @media only screen and (max-width: 1100px) {
+    font-size: 1.5rem;
+  }
+`;
 export const ModalBeerDesc = styled.div`
   color: black;
   grid-column: 3/-1;
   grid-row: 2/5;
   margin: 0 4rem;
+  @media only screen and (max-width: 1000px) {
+    margin: 0 2rem;
+  }
 
   @media only screen and (max-width: 700px) {
     margin: 0;
@@ -131,7 +150,13 @@ export const ModalSuggestedBeers = styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-end;
+  @media only screen and (max-width: 1000px) {
+    grid-row: 6/7;
+  }
   @media only screen and (max-width: 700px) {
     grid-column: 1/-1;
+  }
+  @media only screen and (max-height: 400px) {
+    display: none;
   }
 `;
