@@ -13,6 +13,7 @@ export const SuggestedBeerName = styled.div`
 
 export const SuggestedBeerImg = styled.img`
   height: 15rem;
+  width: 5rem;
   @media only screen and (max-width: 700px) {
     height: 10rem;
   }
@@ -32,6 +33,12 @@ export const SuggestedBeerImg = styled.img`
 
 export const SuggestedItem = styled(Link)`
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  width: 10rem;
+  height: 20rem;
   margin: 0.5rem 5rem;
   text-decoration: none;
   @media only screen and (max-width: 700px) {

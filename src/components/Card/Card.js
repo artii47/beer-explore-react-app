@@ -1,5 +1,5 @@
 import React from "react";
-import * as S from "../styled-components/card";
+import * as S from "./Card.styles";
 
 const Card = props => {
   const renderDescription = () => {

@@ -1,6 +1,6 @@
 import React from "react";
-import DebouncedSearchbar from "./DebouncedSearchbar";
-import * as S from "../styled-components/header";
+import DebouncedSearchbar from "../SearchBar/DebouncedSearchbar";
+import * as S from "./Header.styles.js";
 
 const Header = () => {
   return (

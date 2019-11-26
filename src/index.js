@@ -3,15 +3,21 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware, compose } from "redux";
 import reduxThunk from "redux-thunk";
+import createSagaMiddleware from "redux-saga";
 
-import App from "./components/App.js";
+import App from "./App.js";
 import reducers from "./reducers";
+import rootSaga from "./sagas/root.saga";
+
+const sagaMiddleware = createSagaMiddleware();
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(
+export const store = createStore(
   reducers,
-  composeEnhancers(applyMiddleware(reduxThunk))
+  composeEnhancers(applyMiddleware(sagaMiddleware, reduxThunk))
 );
+
+sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(
   <Provider store={store}>

@@ -17,6 +17,7 @@ const StyledSpinner = styled.div`
   transform: translate(-50%, -50%);
   width: 80px;
   height: 80px;
+  z-index: 999;
 
   :after {
     content: " ";

@@ -1,25 +1,24 @@
 import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
-import { updateSearch, fetchSearchBeers } from "../actions";
+import { useDispatch } from "react-redux";
+import { updateSearch } from "../../actions";
 import PropTypes from "prop-types";
-import * as S from "../styled-components/searchbar";
-import { useDebounce } from "./useDebounce";
+import * as S from "./DebouncedSearchbar.styles";
+import { useDebounce } from "../../helpers/useDebounce";
 
 const DebouncedSearchbar = props => {
-  const { updateSearch } = props;
+  const dispatch = useDispatch();
   const [searchTerm, setSearchTerm] = useState("");
 
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
-  //
   useEffect(() => {
     if (debouncedSearchTerm) {
-      updateSearch(searchTerm);
+      dispatch(updateSearch(searchTerm));
     }
     if (searchTerm.length === 0) {
-      updateSearch(searchTerm);
+      dispatch(updateSearch(searchTerm));
     }
-  }, [debouncedSearchTerm, updateSearch, searchTerm]);
+  }, [debouncedSearchTerm, searchTerm, dispatch]);
 
   return (
     <S.Searchbar>
@@ -34,13 +33,7 @@ const DebouncedSearchbar = props => {
   );
 };
 
-const mapStateToProps = state => {
-  return { searchTerm: state.searchTerm };
-};
-
-export default connect(mapStateToProps, { updateSearch, fetchSearchBeers })(
-  DebouncedSearchbar
-);
+export default DebouncedSearchbar;
 
 DebouncedSearchbar.propTypes = {
   searchTerm: PropTypes.string,

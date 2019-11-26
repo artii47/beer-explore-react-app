@@ -1,11 +1,19 @@
 import styled from "styled-components";
+import { ReactComponent as CancelSvg } from "../../assets/cross.svg";
+
+export const Cancel = styled(CancelSvg)`
+  position: absolute;
+  right: 2rem;
+  cursor: pointer;
+  top: 2rem;
+`;
 
 export const Modal = styled.div`
   position: fixed;
   top: 0;
   left: 0;
   background-color: rgba(24, 2, 2, 0.623);
-  z-index: 999;
+  z-index: 998;
   width: 100%;
   height: 100%;
   transition: all 0.3s ease-out;
@@ -118,6 +126,8 @@ export const ModalText = styled.h3`
 export const ModalSuggestedBeers = styled.div`
   grid-column: 3/9;
   grid-row: 6/7;
+  width: 100%;
+  height: 30rem;
   display: flex;
   justify-content: center;
   align-items: flex-end;

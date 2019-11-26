@@ -1,11 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import history from "../history";
-import Spinner from "./spinner";
-import crossSvg from "../svg/cross.svg";
-import * as S from "../styled-components/modal";
+import { withRouter } from "react-router-dom";
+import Spinner from "../Spinner/Spinner";
+
+import * as S from "./Modal.styles";
+import SuggestedBeers from "../SuggestedBeers/SuggestedBeers";
 
 const Modal = props => {
+  const { history } = props;
   const renderModalContent = () => {
     if (!props.name && !props.image_url) {
       return <Spinner />;
@@ -13,11 +15,7 @@ const Modal = props => {
     return (
       <S.ModalContent onClick={e => e.stopPropagation()}>
         <S.ModalBeerName>{props.name}</S.ModalBeerName>
-        <S.ModalCancel
-          src={crossSvg}
-          onClick={() => history.push("/")}
-          alt={"Cancel"}
-        />
+        <S.Cancel onClick={() => history.push("/")} alt={"Cancel"} />
         <S.ModalBeerBox>
           <S.ModalBeerImg src={props.img} alt={props.name} />
           <S.ModalBeerTagline>
@@ -25,9 +23,8 @@ const Modal = props => {
           </S.ModalBeerTagline>
         </S.ModalBeerBox>
         <S.ModalBeerDesc>{props.description}</S.ModalBeerDesc>
-        <S.ModalText>You may also like</S.ModalText>
         <S.ModalSuggestedBeers>
-          {props.renderSuggestedBeers()}
+          <SuggestedBeers />
         </S.ModalSuggestedBeers>
       </S.ModalContent>
     );
@@ -38,4 +35,4 @@ const Modal = props => {
   );
 };
 
-export default Modal;
+export default withRouter(Modal);

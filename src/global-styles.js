@@ -14,6 +14,7 @@ body {
   background-color: rgba(243, 243, 243, 0.849);
   font-size: 2rem;
   line-height: 2;
+  overflow-y: hidden;
 }
 
 html {

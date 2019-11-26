@@ -1,18 +1,49 @@
 import {
-  FETCH_PAGE,
   FETCH_BEERS,
-  FETCH_BEER,
   RESET_BEER,
   RESET_SEARCH,
   SEARCH,
-  RESET_SUGGESTED_BEERS
+  RESET_SUGGESTED_BEERS,
+  FETCH_BEERS_START,
+  FETCH_BEERS_SUCCESS,
+  FETCH_SEARCH_BEERS_START,
+  FETCH_BEER_START,
+  FETCH_BEER_SUCCESS,
+  FETCH_PAGE_START,
+  FETCH_PAGE_SUCCESS,
+  FETCH_SUGGESTED
 } from "./types";
 import beers from "../apis/beers";
 import _ from "lodash";
 
-export const fetchBeers = () => async dispatch => {
-  const response = await beers.get("/beers");
-  dispatch({ type: FETCH_BEERS, payload: response.data });
+export const fetchBeersStart = () => {
+  return {
+    type: FETCH_BEERS_START
+  };
+};
+
+export const fetchBeersSuccess = response => {
+  return {
+    type: FETCH_BEERS_SUCCESS,
+    payload: response
+  };
+};
+
+export const fetchSearchBeersStart = (searchTerm, store) => {
+  return {
+    type: FETCH_SEARCH_BEERS_START,
+    payload: {
+      searchTerm: searchTerm,
+      store: store
+    }
+  };
+};
+
+export const fetchSearchBeersSuccess = response => {
+  return {
+    type: FETCH_BEERS_SUCCESS,
+    payload: response
+  };
 };
 
 export const fetchSearchBeers = searchTerm => async (dispatch, getState) => {
@@ -24,25 +55,39 @@ export const fetchSearchBeers = searchTerm => async (dispatch, getState) => {
   dispatch({ type: FETCH_BEERS, payload: filteredBeers });
 };
 
-export const fetchBeer = beerId => async dispatch => {
-  const response = await beers.get(`/beers/${beerId}`);
-
-  dispatch({ type: FETCH_BEER, payload: response.data });
+export const fetchBeerStart = beerId => {
+  return {
+    type: FETCH_BEER_START,
+    payload: { beerId }
+  };
 };
 
-//fetch another page
-//https://api.punkapi.com/v2/beers?page=2&per_page=25
+export const fetchBeerSuccess = response => {
+  return {
+    type: FETCH_BEER_SUCCESS,
+    payload: response
+  };
+};
 
-export const fetchPage = (page, changeLoading) => async dispatch => {
-  changeLoading();
-  const response = await beers.get(`/beers?page=${page}`);
-  dispatch({ type: FETCH_PAGE, payload: response.data });
-  changeLoading();
+export const fetchPageStart = page => {
+  return {
+    type: FETCH_PAGE_START,
+    payload: {
+      page: page
+    }
+  };
+};
+
+export const fetchPageSuccess = response => {
+  return {
+    type: FETCH_PAGE_SUCCESS,
+    payload: response
+  };
 };
 
 export const fetchSuggestedBeers = () => async (dispatch, getState) => {
   const response = await beers.get("/beers");
-  let fetchedBeer = getState().beer;
+  let fetchedBeer = getState().beer.beer;
   let suggestedBeers = response.data.filter(beer => {
     return (
       beer.abv <= fetchedBeer.abv + 4 &&
@@ -51,7 +96,7 @@ export const fetchSuggestedBeers = () => async (dispatch, getState) => {
     );
   });
   dispatch({
-    type: "FETCH_SUGGESTED",
+    type: FETCH_SUGGESTED,
     payload: _.shuffle(suggestedBeers)
   });
 };

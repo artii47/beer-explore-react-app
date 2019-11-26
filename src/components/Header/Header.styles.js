@@ -6,7 +6,8 @@ export const Header = styled.div`
   align-items: center;
   background-color: rgba(204, 204, 204, 0.219);
   border-bottom: 2px solid rgba(168, 219, 0, 0.315);
-  position: relative;
+  position: sticky;
+
   @media only screen and (max-width: 1300px) {
     flex-direction: column;
   }

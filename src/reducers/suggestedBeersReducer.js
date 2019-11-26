@@ -1,6 +1,6 @@
 import { FETCH_SUGGESTED_BEERS, RESET_SUGGESTED_BEERS } from "../actions/types";
-const INITIAL_STATE = {};
-export default (state = {}, action) => {
+const INITIAL_STATE = [];
+export default (state = [], action) => {
   switch (action.type) {
     case FETCH_SUGGESTED_BEERS:
       return { ...action.payload };
