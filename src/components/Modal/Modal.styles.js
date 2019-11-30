@@ -54,11 +54,6 @@ export const ModalContent = styled.div`
   transform: translate(-50%, -50%);
   background-color: rgb(255, 247, 247);
   box-shadow: 0 3rem 5rem rgba(black, 0.3);
-
-  @media only screen and (max-width: 800px) {
-    height: 90%;
-    width: 90%;
-  }
 `;
 export const ModalBeerName = styled.div`
   grid-row: 1/1;
@@ -87,7 +82,7 @@ export const ModalBeerBox = styled.div`
   justify-content: center;
   text-align: center;
   flex-direction: column;
-  @media only screen and (max-width: 1000px) {
+  @media only screen and (max-width: 1300px) {
     grid-row: 1/-1;
   }
 `;
@@ -152,9 +147,6 @@ export const ModalSuggestedBeers = styled.div`
   align-items: flex-end;
   @media only screen and (max-width: 1000px) {
     grid-row: 6/7;
-  }
-  @media only screen and (max-width: 700px) {
-    grid-column: 1/-1;
   }
   @media only screen and (max-height: 400px) {
     display: none;

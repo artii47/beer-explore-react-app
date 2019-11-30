@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 
 export const SuggestedBeerName = styled.div`
   color: rgba(0, 0, 0, 0.7);
+  @media only screen and (max-width: 1450px) {
+    font-size: 1.5rem;
+  }
   @media only screen and (max-width: 700px) {
     font-size: 1rem;
   }
