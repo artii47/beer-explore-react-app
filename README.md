@@ -1,6 +1,5 @@
 Beer-explore is an app that fetches the list of beers that we can learn about. It uses react + redux with react-router, redux-saga, styled-components, axios. I'm proud of this app mostly because it was my first app that I have created on my own.
 
-LIVE DEMO: https://beer-explore.herokuapp.com/
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
